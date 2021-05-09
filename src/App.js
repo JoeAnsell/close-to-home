@@ -1,21 +1,32 @@
 import React from "react";
-// import Products from "./components/products/Products";
-// import NavBar from "./components/NavBar/Navbar";
+import styled from "styled-components";
 
 import { Products, Navbar } from "./components";
 import { createGlobalStyle } from "styled-components";
 
 const App = () => {
   return (
-    <div>
+    <AppContainer>
       <GlobalStyle />
       <Navbar />
-      <Products />
-    </div>
+      <PageContaine>
+        <Products />
+      </PageContaine>
+    </AppContainer>
   );
 };
 
 export default App;
+
+const AppContainer = styled.div`
+  padding-top: 100px;
+  max-width: 100vw;
+  max-height: 100vh;
+`;
+
+const PageContaine = styled.div`
+  padding: 30px;
+`;
 
 const GlobalStyle = createGlobalStyle`
   * {

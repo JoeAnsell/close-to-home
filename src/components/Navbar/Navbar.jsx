@@ -40,6 +40,7 @@ const AppBar = styled.div`
   top: 0;
   max-width: 100vw;
   justify-content: space-between;
+  align-items: center;
   border: 2px solid red;
   background-color: white;
   width: 100%;
@@ -47,9 +48,9 @@ const AppBar = styled.div`
 
 const Left = styled.div`
   ${"" /* width: 200px; */}
-  margin: 20px;
+  margin: 10px;
 `;
 const Right = styled.div`
   ${"" /* width: 200px; */}
-  margin: 20px;
+  margin: 10px;
 `;
