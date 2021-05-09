@@ -31,7 +31,9 @@ const Product = ({ product }) => {
           {product.description}
         </h2>
       </ProductContent>
-      <ProductActions>{/* <AddShoppingCart /> */}</ProductActions>
+      <ProductActions>
+        <AddShoppingCart />
+      </ProductActions>
     </ProcutContainer>
   );
 };
