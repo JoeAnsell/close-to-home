@@ -21,7 +21,7 @@ const Navbar = () => {
         <Right>
           <div>
             <IconButton arial-label="Show cart items" color="inherit">
-              <Badge badgecontent={2} color="secondary">
+              <Badge badgeContent={2} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
