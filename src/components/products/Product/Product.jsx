@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardMedia,
@@ -8,35 +8,31 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
-import classes from "*.module.css";
+import {
+  ProcutContainer,
+  ProductImage,
+  ProductContent,
+  ProductActions,
+} from "../../../styles";
 
 const Product = ({ product }) => {
+  useEffect(() => {
+    console.log(product);
+  });
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image=""
-        title={product.name}
-      ></CardMedia>
-      <CardContent>
-        <div className={classes.cardContent}>
-          <Typography variant="h5" gutterBottom>
-            {product.name}
-          </Typography>
-          <Typography variant="h5" gutterBottom>
-            {product.price}
-          </Typography>
+    <ProcutContainer>
+      <ProductImage title={product.name}></ProductImage>
+      <ProductContent>
+        <div>
+          <h5 variant="h5">{product.name}</h5>
+          <h5 variant="h5">{product.price}</h5>
         </div>
-        <Typography variant="h2" color="textSecondary" gutterBottom>
+        <h2 variant="h2" color="textSecondary">
           {product.description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label="Add to cart">
-          <AddShoppingCart />
-        </IconButton>
-      </CardActions>
-    </Card>
+        </h2>
+      </ProductContent>
+      <ProductActions>{/* <AddShoppingCart /> */}</ProductActions>
+    </ProcutContainer>
   );
 };
 

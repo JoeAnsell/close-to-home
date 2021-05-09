@@ -1,5 +1,6 @@
-import React from "react";
-import Grid from "@material-ui/core";
+import React, { useEffect } from "react";
+import { Grid } from "@material-ui/core";
+import Product from "./Product/Product";
 
 const products = [
   { id: 1, name: "Shoes", description: "Running shoes.", price: "$5" },
@@ -7,15 +8,16 @@ const products = [
 ];
 
 const Products = () => {
-  <main>
-    <Grid container justify="center" spacing={4}>
+  useEffect(() => {
+    console.log(products);
+  });
+  return (
+    <main>
       {products.map((product) => {
-        <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-          <Product product={product} />
-        </Grid>;
+        return <Product product={product} />;
       })}
-    </Grid>
-  </main>;
+    </main>
+  );
 };
 
 export default Products;
