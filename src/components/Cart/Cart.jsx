@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CartItem from "./CartItem/CartItem";
+import { Link } from "react-router-dom";
 
-const Cart = ({ cart }) => {
+const Cart = ({
+  cart,
+  handleUpdateCartQty,
+  handleRemoveFromCart,
+  handleEmptyCart,
+}) => {
   const EmptyCart = () => {
-    return <p>You have no items in your cart</p>;
+    return (
+      <>
+        <p>You have no items in your cart</p>
+        <Link to="/">
+          <p>Start adding some items</p>
+        </Link>
+      </>
+    );
   };
 
   const FilledCart = () => {
@@ -14,11 +27,17 @@ const Cart = ({ cart }) => {
       return (
         <>
           {cart.line_items.map((item) => {
-            return <CartItem item={item} />;
+            return (
+              <CartItem
+                onUpdateCartQty={handleUpdateCartQty}
+                onRemoveFromCart={handleRemoveFromCart}
+                item={item}
+              />
+            );
           })}
           <h4>Subtotal : {cart.subtotal.formatted_with_symbol}</h4>
           <div>
-            <button>Empty Cart</button>
+            <button onClick={handleEmptyCart}>Empty Cart</button>
             <button>Checkout </button>
           </div>
         </>

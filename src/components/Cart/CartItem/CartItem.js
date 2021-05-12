@@ -1,19 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   return (
     <Container>
       <img src={item.media.source}></img>
       <p>{item.name}</p>
       <p>{item.line_total.formatted_with_symbol}</p>
       <div>
-        <button>-</button>
+        <button
+          onClick={() => {
+            onUpdateCartQty(item.id, item.quantity - 1);
+          }}
+        >
+          -
+        </button>
         <p>{item.quantity}</p>
-        <button>+</button>
+        <button
+          onClick={() => {
+            onUpdateCartQty(item.id, item.quantity + 1);
+          }}
+        >
+          +
+        </button>
       </div>
       <div>
-        <button>Remove</button>
+        <button
+          onClick={() => {
+            onRemoveFromCart(item.id);
+          }}
+        >
+          Remove
+        </button>
       </div>
     </Container>
   );

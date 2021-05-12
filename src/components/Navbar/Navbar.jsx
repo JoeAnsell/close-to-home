@@ -9,10 +9,11 @@ import {
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-// import classes from "*.module.css";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ totalItems }) => {
+  const location = useLocation();
+
   return (
     <>
       <AppBar position="fixed" color="inherit">
@@ -22,15 +23,17 @@ const Navbar = ({ totalItems }) => {
           </Link>
         </Left>
         <Right>
-          <div>
-            <Link to="/checkout">
-              <IconButton arial-label="Show cart items" color="inherit">
-                <Badge badgeContent={totalItems} color="secondary">
-                  <ShoppingCart />
-                </Badge>
-              </IconButton>
-            </Link>
-          </div>
+          {location.pathname === "/" && (
+            <div>
+              <Link to="/checkout">
+                <IconButton arial-label="Show cart items" color="inherit">
+                  <Badge badgeContent={totalItems} color="secondary">
+                    <ShoppingCart />
+                  </Badge>
+                </IconButton>
+              </Link>
+            </div>
+          )}
         </Right>
       </AppBar>
     </>
