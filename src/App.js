@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { commerce } from "./lib/commerce";
-import { Products, Navbar } from "./components";
+import { Products, Navbar, Cart } from "./components";
 import { createGlobalStyle } from "styled-components";
 
 const App = () => {
@@ -35,9 +35,10 @@ const App = () => {
     <AppContainer>
       <GlobalStyle />
       <Navbar totalItems={cart.total_items} />
-      <PageContaine>
+      <Cart cart={cart}></Cart>
+      {/* <PageContainer>
         <Products products={products} onAddToCart={handleAddToCart} />
-      </PageContaine>
+      </PageContainer> */}
     </AppContainer>
   );
 };
@@ -50,7 +51,7 @@ const AppContainer = styled.div`
   max-height: 100vh;
 `;
 
-const PageContaine = styled.div`
+const PageContainer = styled.div`
   padding: 30px;
 `;
 
