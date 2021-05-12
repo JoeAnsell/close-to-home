@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart } from "./components";
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -32,14 +33,22 @@ const App = () => {
   console.log(cart);
 
   return (
-    <AppContainer>
-      <GlobalStyle />
-      <Navbar totalItems={cart.total_items} />
-      <Cart cart={cart}></Cart>
-      {/* <PageContainer>
-        <Products products={products} onAddToCart={handleAddToCart} />
-      </PageContainer> */}
-    </AppContainer>
+    <Router>
+      <AppContainer>
+        <GlobalStyle />
+        <Navbar totalItems={cart.total_items} />
+        <PageContainer>
+          <Switch>
+            <Route exact path="/">
+              <Products products={products} onAddToCart={handleAddToCart} />
+            </Route>
+            <Route exact path="/checkout">
+              <Cart cart={cart}></Cart>
+            </Route>
+          </Switch>
+        </PageContainer>
+      </AppContainer>
+    </Router>
   );
 };
 
