@@ -11,7 +11,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import styled from "styled-components";
 // import classes from "*.module.css";
 
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
   return (
     <>
       <AppBar position="fixed" color="inherit">
@@ -21,7 +21,7 @@ const Navbar = () => {
         <Right>
           <div>
             <IconButton arial-label="Show cart items" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>

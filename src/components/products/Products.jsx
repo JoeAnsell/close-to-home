@@ -7,14 +7,14 @@ const products = [
   { id: 2, name: "Macbook", description: "Apple Macbook.", price: "$10" },
 ];
 
-const Products = () => {
+const Products = ({ products, onAddToCart }) => {
   useEffect(() => {
     console.log(products);
   });
   return (
     <main>
       {products.map((product) => {
-        return <Product product={product} />;
+        return <Product product={product} onAddToCart={onAddToCart} />;
       })}
     </main>
   );

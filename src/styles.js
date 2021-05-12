@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
-export const ProcutContainer = styled.div`
+export const ProductContainer = styled.div`
   display: block;
+  margin-bottom: 30px;
 `;
 export const ProductImage = styled.div`
   display: block;
