@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { commerce } from "./lib/commerce";
-import { Products, Navbar, Cart } from "./components";
+import { Products, Navbar, Cart, Checkout } from "./components";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { set } from "react-hook-form";
@@ -61,13 +61,16 @@ const App = () => {
             <Route exact path="/">
               <Products products={products} onAddToCart={handleAddToCart} />
             </Route>
-            <Route exact path="/checkout">
+            <Route exact path="/cart">
               <Cart
                 cart={cart}
                 handleUpdateCartQty={handleUpdateCartQty}
                 handleRemoveFromCart={handleRemoveFromCart}
                 handleEmptyCart={handleEmptyCart}
               ></Cart>
+            </Route>
+            <Route exact path="/checkout">
+              <Checkout />
             </Route>
           </Switch>
         </PageContainer>

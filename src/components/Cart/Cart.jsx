@@ -38,7 +38,9 @@ const Cart = ({
           <h4>Subtotal : {cart.subtotal.formatted_with_symbol}</h4>
           <div>
             <button onClick={handleEmptyCart}>Empty Cart</button>
-            <button>Checkout </button>
+            <Link to="/checkout">
+              <button>Checkout </button>
+            </Link>
           </div>
         </>
       );
