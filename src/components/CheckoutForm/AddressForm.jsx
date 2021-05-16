@@ -14,16 +14,14 @@ import { commerce } from "../../lib/commerce";
 
 import FormInput from "./CustomTextField";
 
-const AddressForm = ({ checkoutToken }) => {
+const AddressForm = ({ checkoutToken, next }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
   const [shippingSubdivision, setShippingSubdivision] = useState("");
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
-  const { methods, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
-
+  const methods = useForm();
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({
     id: code,
     label: name,
@@ -45,6 +43,7 @@ const AddressForm = ({ checkoutToken }) => {
     const { countries } = await commerce.services.localeListShippingCountries(
       checkoutTokenId
     );
+
     setShippingCountries(countries);
     setShippingCountry(Object.keys(countries)[0]);
   };
@@ -68,6 +67,7 @@ const AddressForm = ({ checkoutToken }) => {
       { country, region }
     );
 
+    console.log(options);
     setShippingOptions(options);
     setShippingOption(options[0].id);
   };
@@ -81,13 +81,15 @@ const AddressForm = ({ checkoutToken }) => {
   }, [shippingCountry]);
 
   useEffect(() => {
-    if (shippingSubdivisions)
+    if (shippingSubdivision) {
+      console.log(shippingSubdivision);
       fetchShippingOptions(
         checkoutToken.id,
         shippingCountry,
         shippingSubdivision
       );
-  }, [shippingCountry]);
+    }
+  }, [shippingSubdivision]);
 
   return (
     <Container>
@@ -95,7 +97,16 @@ const AddressForm = ({ checkoutToken }) => {
         Shipping Address
       </Typography>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={methods.handleSubmit((data) =>
+            next({
+              ...data,
+              shippingCountry,
+              shippingSubdivision,
+              shippingOption,
+            })
+          )}
+        >
           <Grid container spacing={3}>
             <FormInput required name="firstName" label="First name" />
             <FormInput required name="lastName" label="Last name" />
