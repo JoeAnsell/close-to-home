@@ -25,7 +25,7 @@ const Navbar = ({ totalItems }) => {
         <Right>
           {location.pathname === "/" && (
             <div>
-              <Link to="/checkout">
+              <Link to="/basket">
                 <IconButton arial-label="Show cart items" color="inherit">
                   <Badge badgeContent={totalItems} color="secondary">
                     <ShoppingCart />
