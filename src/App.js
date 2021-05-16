@@ -98,7 +98,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: "futura", "arial", san-serif;
     line-height: 1.3;
-    font-size: 20px;
+    font-size: 18px;
     
     body{
       background-color: white;

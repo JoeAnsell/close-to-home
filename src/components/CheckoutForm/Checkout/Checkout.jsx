@@ -12,6 +12,7 @@ import {
 // import classes from "*.module.css";
 import { commerce } from "../../../lib/commerce";
 import useStyles from "./styles";
+import styled from "styled-components";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 
@@ -46,7 +47,7 @@ const Checkout = ({ cart }) => {
       <PaymentForm />
     );
   return (
-    <>
+    <Container>
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography variant="h4" align="center">
@@ -68,8 +69,13 @@ const Checkout = ({ cart }) => {
           )}
         </Paper>
       </main>
-    </>
+    </Container>
   );
 };
 
 export default Checkout;
+
+const Container = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
+`;
