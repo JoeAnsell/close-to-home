@@ -48,7 +48,6 @@ const App = () => {
 
   const refreshCart = async () => {
     const newCart = await commerce.cart.refresh();
-
     setCart(newCart);
   };
 
@@ -58,19 +57,19 @@ const App = () => {
         checkoutTokenId,
         newOrder
       );
+      incomingOrder();
       setOrder(incomingOrder);
-      refreshCart();
     } catch (error) {
-      setErrorMessage(error.data.error.message);
+      // setErrorMessage(erro);
+      console.log(error);
     }
+    refreshCart();
   };
 
   useEffect(() => {
     fetchProducts();
     fetchCart();
   }, []);
-
-  console.log(cart);
 
   return (
     <Router>

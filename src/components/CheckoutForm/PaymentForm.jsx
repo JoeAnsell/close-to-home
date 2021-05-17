@@ -29,6 +29,9 @@ const PaymentForm = ({
       card: cardElement,
     });
 
+    console.log(checkoutToken);
+    console.log(shippingData);
+
     if (error) {
       console.log(error);
     } else {
@@ -47,6 +50,14 @@ const PaymentForm = ({
           postal_zip_code: shippingData.zip,
           country: shippingData.shippingCountry,
         },
+        billing: {
+          name: "Primary",
+          street: shippingData.address1,
+          town_city: shippingData.city,
+          county_state: shippingData.shippingSubdivision,
+          postal_zip_code: shippingData.zip,
+          country: shippingData.shippingCountry,
+        },
         fulfillment: { shipping_method: shippingData.shippingOption },
         payment: {
           gateway: "stripe",
@@ -55,6 +66,8 @@ const PaymentForm = ({
           },
         },
       };
+      console.log(orderData);
+      console.log(checkoutToken.id);
       onCaptureCheckout(checkoutToken.id, orderData);
       nextStep();
     }
