@@ -7,7 +7,7 @@ import {
   Typography,
   CircularProgress,
   Divider,
-  Buttton,
+  Button,
 } from "@material-ui/core";
 // import classes from "*.module.css";
 import { commerce } from "../../../lib/commerce";
@@ -15,6 +15,7 @@ import useStyles from "./styles";
 import styled from "styled-components";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
+import { Link } from "react-router-dom";
 
 const steps = ["Shipping address", "Payment details"];
 
@@ -35,7 +36,9 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         });
         console.log(token);
         setCheckoutToken(token);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     generateToken();
   }, [cart]);
@@ -46,9 +49,39 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     nextStep();
   };
 
-  const Confirmation = () => {
-    return <div>Confirmation</div>;
-  };
+  let Confirmation = () =>
+    order.customer ? (
+      <>
+        <div>
+          <Typography variasnt="h5">
+            Thank you for your purchase, {order.customer.firstname}{" "}
+            {order.customer.lastname}
+          </Typography>
+          <Divider className={classes.divider} />
+          <Typography variant="subtitilte2">
+            Order ref: {order.customer.reference}
+          </Typography>
+        </div>
+        <br></br>
+        <Button component={Link} to="/" variant="outlined" type="button">
+          Back to Home
+        </Button>
+      </>
+    ) : (
+      <div className={classes.spinner}>
+        <CircularProgress />
+      </div>
+    );
+
+  if (error) {
+    <>
+      <Typography variant="h5">Error: {error}</Typography>
+      <br></br>
+      <Button component={Link} to="/" variant="outlined" type="button">
+        Back to Home
+      </Button>
+    </>;
+  }
 
   const Form = () =>
     activeStep === 0 ? (

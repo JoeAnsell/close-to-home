@@ -8,15 +8,11 @@ const FormInput = ({ name, label, required }) => {
 
   return (
     <Grid item xs={12} sm={6}>
-      {/* <Controller
-        render={({ field }) => <TextField {...field} />}
-        name={name}
-        control={control}
-      /> */}
       <Controller
         name={name}
         label={label}
         control={control}
+        defaultValue=""
         render={({
           field: { onChange, onBlur, value, ref },
           fieldState: { invalid, isTouched, isDirty, error },
