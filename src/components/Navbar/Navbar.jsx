@@ -49,8 +49,6 @@ const AppBar = styled.div`
   max-width: 100vw;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid red;
-  background-color: white;
   width: 100%;
 `;
 

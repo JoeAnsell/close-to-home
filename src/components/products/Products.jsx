@@ -10,6 +10,7 @@ const products = [
 const Products = ({ products, onAddToCart }) => {
   useEffect(() => {
     console.log(products);
+    console.log("frpg");
   });
   return (
     <main>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { commerce } from "./lib/commerce";
-import { Products, Navbar, Cart, Checkout } from "./components";
+import { Products, Navbar, Cart, Checkout, HomePage } from "./components";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { set } from "react-hook-form";
@@ -78,7 +78,7 @@ const App = () => {
         <PageContainer>
           <Switch>
             <Route exact path="/">
-              <Products products={products} onAddToCart={handleAddToCart} />
+              <HomePage products={products} onAddToCart={handleAddToCart} />
             </Route>
             <Route exact path="/basket">
               <Cart
@@ -120,12 +120,13 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "futura", "arial", san-serif;
+    font-family: "helvetica", "arial", san-serif;
     line-height: 1.3;
     font-size: 18px;
+    color: #d5da89;
     
     body{
-      background-color: white;
+      background-color: black;
     }
 
     a,a:visited{
