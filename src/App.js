@@ -106,13 +106,10 @@ const App = () => {
 export default App;
 
 const AppContainer = styled.div`
-  padding-top: 70px;
+  padding-top: 30px;
   max-width: 100vw;
-  width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  border: 2px solid green;
-  text-align: center;
 `;
 
 const PageContainer = styled.div`

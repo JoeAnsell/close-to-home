@@ -7,7 +7,7 @@ import {
   Menu,
   Typography,
 } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart, Home } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 
@@ -17,9 +17,11 @@ const Navbar = ({ totalItems }) => {
   return (
     <AppBar position="fixed" color="inherit">
       <Left>
-        <Link to="/">
-          <h4>Close to Home</h4>
-        </Link>
+        {location.pathname !== "/" && (
+          <Link to="/">
+            <Home />
+          </Link>
+        )}
       </Left>
       <Right>
         {location.pathname === "/" && (
@@ -48,7 +50,6 @@ const AppBar = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border: 2px solid pink;
   height: 70px;
 `;
 
