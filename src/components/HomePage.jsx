@@ -13,13 +13,6 @@ const HomePage = ({ products, onAddToCart }) => {
 
   return (
     <Container>
-      <TitleContainer>
-        <h1>CLOSE TO HOME</h1>
-        <p>
-          FASHION MIXTAPE<br></br>
-          PRODUCED BY NAVINDER & BOBBY NANGLA
-        </p>
-      </TitleContainer>
       <ProductContainer>
         <PricePurchase>
           <div className="price">
@@ -90,7 +83,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   text-align: center;
-  max-width: 700px;
   margin: 0 auto;
 `;
 
@@ -98,7 +90,7 @@ const ProductContainer = styled.div`
   display: flex;
   width: 100%;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 40px;
   max-width: 600px;
   position: relative;
 `;
@@ -112,7 +104,7 @@ const PricePurchase = styled.div`
   .purchase {
     position: relative;
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     &::after {
       display: block;
       position: absolute;
@@ -161,15 +153,5 @@ const ProductImageContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 25px;
-  }
-`;
-
-const TitleContainer = styled.div`
-  h1 {
-    font-size: 30px;
-  }
-  p {
-    font-weight: bold;
-    font-size: 15px;
   }
 `;

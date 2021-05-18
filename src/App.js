@@ -76,6 +76,13 @@ const App = () => {
         <GlobalStyle />
         <Navbar totalItems={cart.total_items} />
         <PageContainer>
+          <TitleContainer>
+            <h1>CLOSE TO HOME</h1>
+            <p>
+              FASHION MIXTAPE<br></br>
+              PRODUCED BY NAVINDER & BOBBY NANGLA
+            </p>
+          </TitleContainer>
           <Switch>
             <Route exact path="/">
               <HomePage products={products} onAddToCart={handleAddToCart} />
@@ -106,14 +113,26 @@ const App = () => {
 export default App;
 
 const AppContainer = styled.div`
-  padding-top: 30px;
   max-width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
 `;
 
 const PageContainer = styled.div`
   padding: 30px;
+  margin: 0 auto;
+  margin-top: 50px;
+  max-width: 700px;
+`;
+
+const TitleContainer = styled.div`
+  text-align: center;
+  h1 {
+    font-size: 30px;
+  }
+  p {
+    font-weight: bold;
+    font-size: 15px;
+  }
+  margin-bottom: 30px;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -135,6 +154,7 @@ const GlobalStyle = createGlobalStyle`
     }
     button{
       -webkit-tap-highlight-color: transparent;
+      color: black;
     }
 
 

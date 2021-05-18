@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
+import { Button, QuantityButton, OutlineButton } from "../../styles";
 
 const Cart = ({
   cart,
@@ -35,13 +36,14 @@ const Cart = ({
               />
             );
           })}
+          <br></br>
           <h4>Subtotal : {cart.subtotal.formatted_with_symbol}</h4>
-          <div>
-            <button onClick={handleEmptyCart}>Empty Cart</button>
+          <ButtonContainer>
+            <OutlineButton onClick={handleEmptyCart}>Empty Cart</OutlineButton>
             <Link to="/checkout">
-              <button>Checkout </button>
+              <Button>Checkout </Button>
             </Link>
-          </div>
+          </ButtonContainer>
         </>
       );
     }
@@ -49,7 +51,8 @@ const Cart = ({
 
   return (
     <Container>
-      <h3>Your ShoppingCart</h3>
+      <h2>Your ShoppingCart</h2>
+      <br></br>
       {!cart.line_items ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
@@ -59,5 +62,15 @@ export default Cart;
 
 const Container = styled.div`
   display: block;
-  border: 2px solid green;
+  background-color: #151515;
+  padding: 30px;
+  border-radius: 30px;
+  text-align: center;
+`;
+
+const ButtonContainer = styled.div`
+  margin-top: 10px;
+  > button {
+    margin-right: 10px;
+  }
 `;
