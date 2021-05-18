@@ -107,6 +107,39 @@ const PricePurchase = styled.div`
   position: absolute;
   right: 0;
   transform: translateX(100%);
+
+  .price,
+  .purchase {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+    &::after {
+      display: block;
+      position: absolute;
+      content: "";
+      background-image: url(${smudge});
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 250%;
+      height: 250%;
+      top: -75%;
+      left: -70%;
+      z-index: -1;
+    }
+  }
+  .purchase {
+    &::after {
+      transform: rotate(-180deg);
+    }
+    &:hover {
+      svg {
+        path {
+          color: #b4b77e;
+        }
+      }
+    }
+  }
 `;
 
 const ProductInfo = styled.div`
