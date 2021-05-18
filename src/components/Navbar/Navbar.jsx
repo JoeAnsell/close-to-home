@@ -15,28 +15,26 @@ const Navbar = ({ totalItems }) => {
   const location = useLocation();
 
   return (
-    <>
-      <AppBar position="fixed" color="inherit">
-        <Left>
-          <Link to="/">
-            <h4>Close to Home</h4>
-          </Link>
-        </Left>
-        <Right>
-          {location.pathname === "/" && (
-            <div>
-              <Link to="/basket">
-                <IconButton arial-label="Show cart items" color="inherit">
-                  <Badge badgeContent={totalItems} color="secondary">
-                    <ShoppingCart />
-                  </Badge>
-                </IconButton>
-              </Link>
-            </div>
-          )}
-        </Right>
-      </AppBar>
-    </>
+    <AppBar position="fixed" color="inherit">
+      <Left>
+        <Link to="/">
+          <h4>Close to Home</h4>
+        </Link>
+      </Left>
+      <Right>
+        {location.pathname === "/" && (
+          <div>
+            <Link to="/basket">
+              <IconButton arial-label="Show cart items" color="inherit">
+                <Badge badgeContent={totalItems} color="secondary">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </Link>
+          </div>
+        )}
+      </Right>
+    </AppBar>
   );
 };
 
@@ -50,6 +48,8 @@ const AppBar = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  border: 2px solid pink;
+  height: 70px;
 `;
 
 const Left = styled.div`

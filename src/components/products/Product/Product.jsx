@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import {
   Card,
   CardMedia,
@@ -8,12 +9,6 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
-import {
-  ProductContainer,
-  ProductImage,
-  ProductContent,
-  ProductActions,
-} from "../../../styles";
 
 const Product = ({ product, onAddToCart }) => {
   useEffect(() => {
@@ -40,3 +35,16 @@ const Product = ({ product, onAddToCart }) => {
 };
 
 export default Product;
+
+export const ProductContainer = styled.div`
+  display: block;
+`;
+export const ProductImage = styled.div`
+  display: block;
+`;
+export const ProductContent = styled.div`
+  display: block;
+`;
+export const ProductActions = styled.div`
+  display: block;
+`;
