@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/static/js/main.ad0e04fb.chunk.js",
+    "main.js.map": "/static/js/main.ad0e04fb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b1209dd3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b1209dd3.js.map",
+    "static/js/2.73544278.chunk.js": "/static/js/2.73544278.chunk.js",
+    "static/js/2.73544278.chunk.js.map": "/static/js/2.73544278.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.73544278.chunk.js.LICENSE.txt": "/static/js/2.73544278.chunk.js.LICENSE.txt",
+    "static/media/smudge.a46d5a2c.png": "/static/media/smudge.a46d5a2c.png",
+    "static/media/tape-case-back-comp.db659dc4.png": "/static/media/tape-case-back-comp.db659dc4.png",
+    "static/media/tape-case-front-comp.9b4b8391.png": "/static/media/tape-case-front-comp.9b4b8391.png",
+    "static/media/tape-comp.25505c8f.png": "/static/media/tape-comp.25505c8f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b1209dd3.js",
+    "static/js/2.73544278.chunk.js",
+    "static/js/main.ad0e04fb.chunk.js"
+  ]
+}

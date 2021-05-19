@@ -15,7 +15,7 @@ import useStyles from "./styles";
 import styled from "styled-components";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "../../../styles";
 
 const steps = ["Shipping address", "Payment details"];
@@ -24,6 +24,8 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
+  const [isFinished, setIsFinished] = useState(false);
+  const history = useHistory();
   const classes = useStyles();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -35,10 +37,9 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         const token = await commerce.checkout.generateToken(cart.id, {
           type: "cart",
         });
-        console.log(token);
         setCheckoutToken(token);
       } catch (error) {
-        console.log(error);
+        history.pushState("/");
       }
     };
     generateToken();
@@ -48,6 +49,12 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     console.log(data);
     setShippingData(data);
     nextStep();
+  };
+
+  const timeout = () => {
+    setTimeout(() => {
+      setIsFinished(true);
+    }, 3000);
   };
 
   let Confirmation = () =>
@@ -62,6 +69,17 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
           <Typography variant="subtitilte2">
             Order ref: {order.customer.reference}
           </Typography>
+        </div>
+        <br></br>
+        <Button component={Link} to="/" variant="outlined" type="button">
+          Back to Home
+        </Button>
+      </>
+    ) : isFinished ? (
+      <>
+        <div>
+          <Typography variasnt="h5">Thank you for your purchase</Typography>
+          <Divider className={classes.divider} />
         </div>
         <br></br>
         <Button component={Link} to="/" variant="outlined" type="button">
@@ -94,6 +112,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         backStep={backStep}
         nextStep={nextStep}
         onCaptureCheckout={onCaptureCheckout}
+        timeout={timeout}
       />
     );
   return (
