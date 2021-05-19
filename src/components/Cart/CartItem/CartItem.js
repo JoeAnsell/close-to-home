@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, QuantityButton, OutlineButton } from "../../../styles";
+import { OutlineButton } from "../../../styles";
 
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   return (
@@ -9,7 +9,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
       <p>{item.name}</p>
       <p>{item.line_total.formatted_with_symbol}</p>
       <Quantity>
-        <QuantityButton
+        <OutlineButton
           size="small"
           color="primary"
           variant="contained"
@@ -17,10 +17,10 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
             onUpdateCartQty(item.id, item.quantity - 1);
           }}
         >
-          -
-        </QuantityButton>
+          –
+        </OutlineButton>
         <p>{item.quantity}</p>
-        <QuantityButton
+        <OutlineButton
           size="small"
           color="primary"
           variant="contained"
@@ -29,7 +29,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
           }}
         >
           +
-        </QuantityButton>
+        </OutlineButton>
       </Quantity>
       <div>
         <OutlineButton

@@ -37,7 +37,9 @@ const Cart = ({
             );
           })}
           <br></br>
-          <h4>Subtotal : {cart.subtotal.formatted_with_symbol}</h4>
+          <h4 style={{ color: "#d5da89" }}>
+            Subtotal : {cart.subtotal.formatted_with_symbol}
+          </h4>
           <ButtonContainer>
             <OutlineButton onClick={handleEmptyCart}>Empty Cart</OutlineButton>
             <Link to="/checkout">
@@ -66,6 +68,7 @@ const Container = styled.div`
   padding: 30px;
   border-radius: 30px;
   text-align: center;
+  color: white;
 `;
 
 const ButtonContainer = styled.div`

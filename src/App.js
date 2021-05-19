@@ -133,6 +133,7 @@ const TitleContainer = styled.div`
     font-size: 15px;
   }
   margin-bottom: 30px;
+  color: #d5da89;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -143,7 +144,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: "helvetica", "arial", san-serif;
     line-height: 1.3;
     font-size: 18px;
-    color: #d5da89;
     
     body{
       background-color: black;

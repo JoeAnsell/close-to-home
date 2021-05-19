@@ -84,6 +84,7 @@ const Container = styled.div`
   height: 100%;
   text-align: center;
   margin: 0 auto;
+  color: #d5da89;
 `;
 
 const ProductContainer = styled.div`

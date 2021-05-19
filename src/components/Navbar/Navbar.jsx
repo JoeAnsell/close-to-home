@@ -51,13 +51,12 @@ const AppBar = styled.div`
   align-items: center;
   width: 100%;
   height: 70px;
+  color: #d5da89;
 `;
 
 const Left = styled.div`
-  ${"" /* width: 200px; */}
   margin: 10px;
 `;
 const Right = styled.div`
-  ${"" /* width: 200px; */}
   margin: 10px;
 `;

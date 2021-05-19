@@ -3,7 +3,6 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Button,
   Grid,
   Typography,
   TextField,
@@ -12,6 +11,7 @@ import styled from "styled-components";
 import { useFormContext, useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { commerce } from "../../lib/commerce";
+import { Button } from "../../styles";
 
 import FormInput from "./CustomTextField";
 
@@ -176,5 +176,5 @@ const AddressForm = ({ checkoutToken, next }) => {
 export default AddressForm;
 
 const Container = styled.div`
-  padding: 50px;
+  display: block;
 `;

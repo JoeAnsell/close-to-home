@@ -6,7 +6,7 @@ import {
   ElementsConsumer,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
+import styled from "styled-components";
 import Review from "./Review";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -73,7 +73,7 @@ const PaymentForm = ({
     }
   };
   return (
-    <>
+    <Container>
       <Review checkoutToken={checkoutToken} />
       <Divider />
       <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
@@ -107,8 +107,12 @@ const PaymentForm = ({
           )}
         </ElementsConsumer>
       </Elements>
-    </>
+    </Container>
   );
 };
 
 export default PaymentForm;
+
+const Container = styled.div`
+  display: block;
+`;

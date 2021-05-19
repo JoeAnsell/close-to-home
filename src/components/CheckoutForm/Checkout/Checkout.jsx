@@ -7,7 +7,6 @@ import {
   Typography,
   CircularProgress,
   Divider,
-  Button,
 } from "@material-ui/core";
 // import classes from "*.module.css";
 import { commerce } from "../../../lib/commerce";
@@ -16,6 +15,7 @@ import styled from "styled-components";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 import { Link } from "react-router-dom";
+import { Button } from "../../../styles";
 
 const steps = ["Shipping address", "Payment details"];
 
@@ -23,7 +23,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
-  const classes = useStyles;
+  const classes = useStyles();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -99,9 +99,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     <Container>
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-          <Typography variant="h4" align="center">
-            Checkout
-          </Typography>
+          <h1>Checkout</h1>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((step) => {
               return (
@@ -111,11 +109,13 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
               );
             })}
           </Stepper>
-          {activeStep === steps.length ? (
-            <Confirmation />
-          ) : (
-            checkoutToken && <Form />
-          )}
+          <FormContent>
+            {activeStep === steps.length ? (
+              <Confirmation />
+            ) : (
+              checkoutToken && <Form />
+            )}
+          </FormContent>
         </Paper>
       </main>
     </Container>
@@ -127,4 +127,12 @@ export default Checkout;
 const Container = styled.div`
   max-width: 700px;
   margin: 0 auto;
+
+  h1 {
+    text-align: center;
+  }
+`;
+
+const FormContent = styled.div`
+  padding: 0px 25px 25px 25px;
 `;
