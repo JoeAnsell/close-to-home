@@ -7,6 +7,7 @@ import {
   Typography,
   CircularProgress,
   Divider,
+  CssBaseline,
 } from "@material-ui/core";
 // import classes from "*.module.css";
 import { commerce } from "../../../lib/commerce";
@@ -97,6 +98,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     );
   return (
     <Container>
+      <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <h1>Checkout</h1>
