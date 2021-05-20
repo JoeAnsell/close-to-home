@@ -17,6 +17,7 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [path, setPath] = useState("");
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -70,13 +71,15 @@ const App = () => {
     }
     refreshCart();
   };
-  // const location = useLocation();
 
   useEffect(() => {
     fetchProducts();
     fetchCart();
-    // console.log(Route);
   }, []);
+
+  useEffect(() => {
+    setPath(window.location.pathname);
+  });
 
   return (
     <Router>
@@ -84,7 +87,7 @@ const App = () => {
         <GlobalStyle />
         <Navbar totalItems={cart.total_items} />
         <PageContainer>
-          <TitleContainer>
+          <TitleContainer className={`${path === "/checkout" && "dark"}`}>
             <h1>CLOSE TO HOME</h1>
             <p>
               FASHION MIXTAPE<br></br>
@@ -125,7 +128,7 @@ const AppContainer = styled.div`
 `;
 
 const PageContainer = styled.div`
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
   margin: 0 auto;
   margin-top: 50px;
   max-width: 700px;
@@ -142,6 +145,16 @@ const TitleContainer = styled.div`
   }
   margin-bottom: 30px;
   color: #d5da89;
+  &.dark {
+    h1 {
+      font-size: 25px;
+    }
+    p {
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    color: black;
+  }
 `;
 
 const GlobalStyle = createGlobalStyle`
