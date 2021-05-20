@@ -9,6 +9,7 @@ import smudge from "../images/smudge.png";
 const HomePage = ({ products, onAddToCart }) => {
   useEffect(() => {
     console.log(products);
+    console.log(process.env.PUBLIC_URL);
   });
 
   return (
