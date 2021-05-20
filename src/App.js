@@ -3,7 +3,13 @@ import styled from "styled-components";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart, Checkout, HomePage } from "./components";
 import { createGlobalStyle } from "styled-components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { set } from "react-hook-form";
 
 const App = () => {
@@ -64,10 +70,12 @@ const App = () => {
     }
     refreshCart();
   };
+  // const location = useLocation();
 
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    // console.log(Route);
   }, []);
 
   return (

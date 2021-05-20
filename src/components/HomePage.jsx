@@ -5,13 +5,14 @@ import tapeCaseBack from "../images/tape-case-back-comp.png";
 import tapeCaseFront from "../images/tape-case-front-comp.png";
 import tape from "../images/tape-comp.png";
 import smudge from "../images/smudge.png";
+import { Link, useLocation } from "react-router-dom";
 
 const HomePage = ({ products, onAddToCart }) => {
+  // const location = useLocation();
   useEffect(() => {
-    console.log(products);
-    console.log(process.env.PUBLIC_URL);
+    // console.log(location);
+    // console.log(window.location);
   });
-
   return (
     <Container>
       <ProductContainer>

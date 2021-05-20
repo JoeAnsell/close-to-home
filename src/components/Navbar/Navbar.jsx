@@ -17,11 +17,13 @@ const Navbar = ({ totalItems }) => {
   return (
     <AppBar position="fixed" color="inherit">
       <Left>
-        {location.pathname !== "/" && (
-          <Link to="/">
+        <Link to="/">
+          {location.pathname === "/checkout" ? (
+            <Home className="dark" />
+          ) : (
             <Home />
-          </Link>
-        )}
+          )}
+        </Link>
       </Left>
       <Right>
         {location.pathname === "/" && (
@@ -52,6 +54,9 @@ const AppBar = styled.div`
   width: 100%;
   height: 70px;
   color: #d5da89;
+  .dark {
+    color: black;
+  }
 `;
 
 const Left = styled.div`
