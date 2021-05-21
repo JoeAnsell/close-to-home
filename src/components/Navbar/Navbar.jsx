@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Toolbar,
-  IconButton,
-  Badge,
-  MenuItem,
-  Menu,
-  Typography,
-} from "@material-ui/core";
+import { IconButton, Badge } from "@material-ui/core";
 import { ShoppingCart, Home } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";

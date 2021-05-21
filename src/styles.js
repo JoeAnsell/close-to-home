@@ -1,4 +1,3 @@
-import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 export const QuantityButton = styled.button`

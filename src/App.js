@@ -3,24 +3,15 @@ import styled from "styled-components";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart, Checkout, HomePage } from "./components";
 import { createGlobalStyle } from "styled-components";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-  useHistory,
-  browserHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { set } from "react-hook-form";
-import Title from "./components/Title";
+import Title from "./components/Title/Title";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
-  const [path, setPath] = useState("");
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();

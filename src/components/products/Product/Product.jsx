@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Typography,
-  IconButton,
-} from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
 
 const Product = ({ product, onAddToCart }) => {

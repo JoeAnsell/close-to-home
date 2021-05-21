@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-  useHistory,
-  browserHistory,
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Title = () => {
   const [path, setPath] = useState("");
