@@ -9,8 +9,11 @@ import {
   Route,
   Link,
   useLocation,
+  useHistory,
+  browserHistory,
 } from "react-router-dom";
 import { set } from "react-hook-form";
+import Title from "./components/Title";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -77,23 +80,13 @@ const App = () => {
     fetchCart();
   }, []);
 
-  useEffect(() => {
-    setPath(window.location.pathname);
-  });
-
   return (
     <Router>
       <AppContainer>
         <GlobalStyle />
         <Navbar totalItems={cart.total_items} />
         <PageContainer>
-          <TitleContainer className={`${path === "/checkout" && "dark"}`}>
-            <h1>CLOSE TO HOME</h1>
-            <p>
-              FASHION MIXTAPE<br></br>
-              PRODUCED BY NAVINDER & BOBBY NANGLA
-            </p>
-          </TitleContainer>
+          <Title />
           <Switch>
             <Route exact path="/">
               <HomePage products={products} onAddToCart={handleAddToCart} />
