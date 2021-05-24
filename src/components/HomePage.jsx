@@ -129,6 +129,20 @@ const PricePurchase = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 800px) {
+    display: flex;
+    right: 0;
+    transform: translateX(0%);
+    .price,
+    .purchase {
+      margin-bottom: 0px;
+      padding: 5px;
+    }
+    .price {
+      margin-right: 70px;
+    }
+  }
 `;
 
 const ProductInfo = styled.div`

@@ -70,9 +70,12 @@ const App = () => {
   };
 
   useEffect(() => {
+    // noise();
+  });
+
+  useEffect(() => {
     fetchProducts();
     fetchCart();
-    noise();
   }, []);
 
   return (
@@ -142,6 +145,9 @@ const PageContainer = styled.div`
   padding: 50px 30px 100px 30px;
   margin: 0 auto;
   max-width: 700px;
+  @media only screen and (max-width: 500px) {
+    padding: 80px 30px 100px 30px;
+  }
 `;
 
 const Noise = styled.canvas`
@@ -185,5 +191,16 @@ const GlobalStyle = createGlobalStyle`
       font-size: 1.2rem;
       line-height: 1.3rem;
     }
-  }
+    @media only screen and (max-width: 500px) {
+        h1{
+        font-size: 1.5rem;
+        line-height: 1.6rem;
+      }
+      h2{
+        font-size: 1rem;
+        line-height: 1.1rem;
+      }
+        font-size: 17px;
+      }
+    }
 `;
