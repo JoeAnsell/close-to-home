@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-const Title = () => {
+const Title = ({ location }) => {
   const [path, setPath] = useState("");
   const history = useHistory();
   useEffect(() => {
-    return history.listen((location) => {
-      setPath(location.pathname);
-    });
-  }, [history]);
+    setPath(location.pathname);
+  });
   return (
     <TitleContainer className={`${path === "/checkout" && "dark"}`}>
       <h1>CLOSE TO HOME</h1>

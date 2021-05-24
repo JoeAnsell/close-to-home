@@ -8,6 +8,7 @@ import { set } from "react-hook-form";
 import Title from "./components/Title/Title";
 import bg from "./images/bg-comp.jpg";
 import { Parallax } from "react-parallax";
+import { noise } from "./noise";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -71,6 +72,7 @@ const App = () => {
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    noise();
   }, []);
 
   return (
@@ -78,32 +80,48 @@ const App = () => {
       <AppContainer>
         <GlobalStyle />
         <Navbar totalItems={cart.total_items} />
-        <Parallax blur={0} bgImage={bg} strength={1000}>
-          <PageContainer>
-            <Title />
-            <Switch>
-              <Route exact path="/">
-                <HomePage products={products} onAddToCart={handleAddToCart} />
-              </Route>
-              <Route exact path="/basket">
-                <Cart
-                  cart={cart}
-                  handleUpdateCartQty={handleUpdateCartQty}
-                  handleRemoveFromCart={handleRemoveFromCart}
-                  handleEmptyCart={handleEmptyCart}
-                ></Cart>
-              </Route>
-              <Route exact path="/checkout">
-                <Checkout
-                  cart={cart}
-                  order={order}
-                  onCaptureCheckout={handleCaptureCheckout}
-                  error={errorMessage}
-                />
-              </Route>
-            </Switch>
-          </PageContainer>
-        </Parallax>
+        <Switch>
+          <Route
+            render={({ location }) =>
+              ["/", "/basket"].includes(location.pathname) ? (
+                <Parallax blur={0} bgImage={bg} strength={1000}>
+                  <Noise id="noise" />
+                  <PageContainer>
+                    <Title location={location} />
+                    <Switch>
+                      <Route exact path="/">
+                        <HomePage
+                          products={products}
+                          onAddToCart={handleAddToCart}
+                        />
+                      </Route>
+                      <Route exact path="/basket">
+                        <Cart
+                          cart={cart}
+                          handleUpdateCartQty={handleUpdateCartQty}
+                          handleRemoveFromCart={handleRemoveFromCart}
+                          handleEmptyCart={handleEmptyCart}
+                        ></Cart>
+                      </Route>
+                    </Switch>
+                  </PageContainer>
+                </Parallax>
+              ) : (
+                <PageContainer>
+                  <Route exact path="/checkout">
+                    <Title location={location} />
+                    <Checkout
+                      cart={cart}
+                      order={order}
+                      onCaptureCheckout={handleCaptureCheckout}
+                      error={errorMessage}
+                    />
+                  </Route>
+                </PageContainer>
+              )
+            }
+          ></Route>
+        </Switch>
       </AppContainer>
     </Router>
   );
@@ -116,6 +134,7 @@ const AppContainer = styled.div`
   background: transparent;
   .react-parallax-bgimage {
     height: 150vh !important;
+    z-index: -2;
   }
 `;
 
@@ -123,6 +142,16 @@ const PageContainer = styled.div`
   padding: 50px 30px 100px 30px;
   margin: 0 auto;
   max-width: 700px;
+`;
+
+const Noise = styled.canvas`
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 `;
 
 const GlobalStyle = createGlobalStyle`
