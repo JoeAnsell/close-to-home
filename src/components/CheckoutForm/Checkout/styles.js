@@ -8,8 +8,6 @@ export default makeStyles((theme) => ({
   layout: {
     marginTop: "5%",
     width: "auto",
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: "auto",
@@ -19,10 +17,9 @@ export default makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    padding: "padding: 0px 25px 25px 25px",
+    padding: theme.spacing(5, 0, 3, 0),
     [theme.breakpoints.down("xs")]: {
       width: "100%",
-      marginTop: 60,
     },
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
@@ -31,7 +28,7 @@ export default makeStyles((theme) => ({
     },
   },
   stepper: {
-    padding: theme.spacing(3, 0, 5),
+    padding: theme.spacing(3, 1, 5, 1),
   },
   buttons: {
     display: "flex",

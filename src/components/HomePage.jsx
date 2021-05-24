@@ -90,10 +90,12 @@ const ProductContainer = styled.div`
   margin-top: 40px;
   max-width: 600px;
   position: relative;
+  align-items: center;
 `;
 
 const PricePurchase = styled.div`
   position: absolute;
+  top: 0;
   right: 0;
   transform: translateX(100%);
 
@@ -148,6 +150,10 @@ const PricePurchase = styled.div`
 const ProductInfo = styled.div`
   display: block;
   margin-top: 20px;
+  @media only screen and (max-width: 500px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const ProductImageContainer = styled.div`

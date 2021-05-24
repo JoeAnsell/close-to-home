@@ -146,7 +146,7 @@ const PageContainer = styled.div`
   margin: 0 auto;
   max-width: 700px;
   @media only screen and (max-width: 500px) {
-    padding: 80px 30px 100px 30px;
+    padding: 80px 10px 100px 10px;
   }
 `;
 

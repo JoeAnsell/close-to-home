@@ -17,8 +17,12 @@ import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "../../../styles";
+import { MobileView } from "react-device-detect";
 
-const steps = ["Shipping address", "Payment details"];
+const steps = [
+  `Shipping ${!MobileView ? "address" : ""}`,
+  `Payment ${!MobileView ? "details" : ""}`,
+];
 
 const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const [activeStep, setActiveStep] = useState(0);
