@@ -35,17 +35,19 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
+  const generateToken = async () => {
+    try {
+      const token = await commerce.checkout.generateToken(cart.id, {
+        type: "cart",
+      });
+      setCheckoutToken(token);
+    } catch (error) {
+      console.log("no token");
+      // history.pushState("/");
+    }
+  };
+
   useEffect(() => {
-    const generateToken = async () => {
-      try {
-        const token = await commerce.checkout.generateToken(cart.id, {
-          type: "cart",
-        });
-        setCheckoutToken(token);
-      } catch (error) {
-        history.pushState("/");
-      }
-    };
     generateToken();
   }, [cart]);
 
@@ -75,9 +77,11 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
           </Typography>
         </div>
         <br></br>
-        <Button component={Link} to="/" variant="outlined" type="button">
-          Back to Home
-        </Button>
+        <Link to="/">
+          <Button cvariant="outlined" type="button">
+            Back to Home
+          </Button>
+        </Link>
       </>
     ) : isFinished ? (
       <>
@@ -86,9 +90,11 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
           <Divider className={classes.divider} />
         </div>
         <br></br>
-        <Button component={Link} to="/" variant="outlined" type="button">
-          Back to Home
-        </Button>
+        <Link to="/">
+          <Button cvariant="outlined" type="button">
+            Back to Home
+          </Button>
+        </Link>
       </>
     ) : (
       <div className={classes.spinner}>
@@ -100,9 +106,11 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     <>
       <Typography variant="h5">Error: {error}</Typography>
       <br></br>
-      <Button component={Link} to="/" variant="outlined" type="button">
-        Back to Home
-      </Button>
+      <Link to="/">
+        <Button cvariant="outlined" type="button">
+          Back to Home
+        </Button>
+      </Link>
     </>;
   }
 
