@@ -46,6 +46,7 @@ const AppBar = styled.div`
   align-items: center;
   width: 100%;
   height: 70px;
+  z-index: 2;
   color: #d5da89;
   .dark {
     color: black;

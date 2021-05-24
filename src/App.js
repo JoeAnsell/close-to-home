@@ -6,6 +6,8 @@ import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { set } from "react-hook-form";
 import Title from "./components/Title/Title";
+import bg from "./images/bg-comp.jpg";
+import { Parallax } from "react-parallax";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -76,30 +78,32 @@ const App = () => {
       <AppContainer>
         <GlobalStyle />
         <Navbar totalItems={cart.total_items} />
-        <PageContainer>
-          <Title />
-          <Switch>
-            <Route exact path="/">
-              <HomePage products={products} onAddToCart={handleAddToCart} />
-            </Route>
-            <Route exact path="/basket">
-              <Cart
-                cart={cart}
-                handleUpdateCartQty={handleUpdateCartQty}
-                handleRemoveFromCart={handleRemoveFromCart}
-                handleEmptyCart={handleEmptyCart}
-              ></Cart>
-            </Route>
-            <Route exact path="/checkout">
-              <Checkout
-                cart={cart}
-                order={order}
-                onCaptureCheckout={handleCaptureCheckout}
-                error={errorMessage}
-              />
-            </Route>
-          </Switch>
-        </PageContainer>
+        <Parallax blur={0} bgImage={bg} strength={1000}>
+          <PageContainer>
+            <Title />
+            <Switch>
+              <Route exact path="/">
+                <HomePage products={products} onAddToCart={handleAddToCart} />
+              </Route>
+              <Route exact path="/basket">
+                <Cart
+                  cart={cart}
+                  handleUpdateCartQty={handleUpdateCartQty}
+                  handleRemoveFromCart={handleRemoveFromCart}
+                  handleEmptyCart={handleEmptyCart}
+                ></Cart>
+              </Route>
+              <Route exact path="/checkout">
+                <Checkout
+                  cart={cart}
+                  order={order}
+                  onCaptureCheckout={handleCaptureCheckout}
+                  error={errorMessage}
+                />
+              </Route>
+            </Switch>
+          </PageContainer>
+        </Parallax>
       </AppContainer>
     </Router>
   );
@@ -109,36 +113,16 @@ export default App;
 
 const AppContainer = styled.div`
   max-width: 100vw;
+  background: transparent;
+  .react-parallax-bgimage {
+    height: 150vh !important;
+  }
 `;
 
 const PageContainer = styled.div`
-  padding: 0px 30px 30px 30px;
+  padding: 50px 30px 100px 30px;
   margin: 0 auto;
-  margin-top: 50px;
   max-width: 700px;
-`;
-
-const TitleContainer = styled.div`
-  text-align: center;
-  h1 {
-    font-size: 30px;
-  }
-  p {
-    font-weight: bold;
-    font-size: 15px;
-  }
-  margin-bottom: 30px;
-  color: #d5da89;
-  &.dark {
-    h1 {
-      font-size: 25px;
-    }
-    p {
-      font-weight: bold;
-      font-size: 0.8rem;
-    }
-    color: black;
-  }
 `;
 
 const GlobalStyle = createGlobalStyle`
