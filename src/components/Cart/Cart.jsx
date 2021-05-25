@@ -27,9 +27,10 @@ const Cart = ({
     } else {
       return (
         <>
-          {cart.line_items.map((item) => {
+          {cart.line_items.map((item, index) => {
             return (
               <CartItem
+                key={index}
                 onUpdateCartQty={handleUpdateCartQty}
                 onRemoveFromCart={handleRemoveFromCart}
                 item={item}

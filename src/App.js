@@ -118,6 +118,7 @@ const App = () => {
               ["/", "/basket"].includes(location.pathname) ? (
                 <Parallax
                   blur={0}
+                  className={`${isMobile && "mobile"}`}
                   bgImage={`${isMobile ? bgMobile : bg}`}
                   strength={1000}
                 >
@@ -172,8 +173,9 @@ export default App;
 const AppContainer = styled.div`
   max-width: 100vw;
   background: transparent;
+
   .react-parallax-bgimage {
-    height: 150vh !important;
+    max-height: 250vh !important;
     z-index: -2;
   }
 `;

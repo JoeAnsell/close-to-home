@@ -134,7 +134,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         <Paper className={classes.paper}>
           <h1>Checkout</h1>
           <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map((step) => {
+            {steps.map((step, index) => {
               return (
                 <Step key={step}>
                   <StepLabel>{step}</StepLabel>
