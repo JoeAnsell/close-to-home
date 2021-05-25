@@ -38,7 +38,10 @@ const Images = ({ windowSmall }) => {
               style={{ width: imageWidth }}
               className={`image-${index + 1}`}
               key={index}
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setPhotoIndex(index);
+                setIsOpen(true);
+              }}
               src={image}
             />
           );
@@ -48,15 +51,11 @@ const Images = ({ windowSmall }) => {
       {isOpen && (
         <Lightbox
           mainSrc={images[photoIndex]}
-          nextSrc={images[(photoIndex + 1) % images.length]}
-          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+          nextSrc={images[photoIndex + 1]}
+          prevSrc={images[photoIndex - 1]}
           onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex(photoIndex + images.length - 1) % images.length
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex(photoIndex + 1) % images.length
-          }
+          onMovePrevRequest={() => setPhotoIndex(photoIndex - 1)}
+          onMoveNextRequest={() => setPhotoIndex(photoIndex + 1)}
         />
       )}
     </>
