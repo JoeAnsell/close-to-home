@@ -50,6 +50,7 @@ const Images = ({ windowSmall }) => {
 
       {isOpen && (
         <Lightbox
+          imagePadding={50}
           mainSrc={images[photoIndex]}
           nextSrc={images[photoIndex + 1]}
           prevSrc={images[photoIndex - 1]}
