@@ -7,14 +7,16 @@ import image3 from "../images/context-proto-final.jpg";
 
 const images = [image1, image2, image3];
 
-const Images = () => {
+const Images = ({ windowSmall }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   return (
     <div>
-      <button type="button" onClick={() => setIsOpen(true)}>
-        Open Lightbox
-      </button>
+      {windowSmall && (
+        <button type="button" onClick={() => setIsOpen(true)}>
+          Open Lightbox
+        </button>
+      )}
 
       {isOpen && (
         <Lightbox

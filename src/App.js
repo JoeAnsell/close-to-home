@@ -29,6 +29,7 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [windowSmall, setWindowSmall] = useState(false);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -85,13 +86,25 @@ const App = () => {
 
   useEffect(() => {
     noise();
-    console.log(isPortrait);
-    console.log(MobileView);
   });
+
+  const checkDevice = () => {
+    const windowWidth = window.innerWidth;
+    setTimeout(() => {
+      if (windowWidth < 800) {
+        setWindowSmall(true);
+      } else {
+        setWindowSmall(false);
+      }
+    }, 500);
+  };
 
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    window.addEventListener("resize", checkDevice);
+    checkDevice();
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   return (
@@ -108,7 +121,9 @@ const App = () => {
                   bgImage={`${isMobile ? bgMobile : bg}`}
                   strength={1000}
                 >
-                  {location.pathname === "/" && <Images />}
+                  {location.pathname === "/" && (
+                    <Images windowSmall={windowSmall} />
+                  )}
                   <Noise id="noise" />
                   <PageContainer>
                     <Title location={location} />
