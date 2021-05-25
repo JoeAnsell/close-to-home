@@ -114,14 +114,15 @@ const PricePurchase = styled.div`
       background-repeat: no-repeat;
       width: 250%;
       height: 250%;
-      top: -75%;
-      left: -70%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: -1;
     }
   }
   .purchase {
     &::after {
-      transform: rotate(-180deg);
+      transform: rotate(-180deg), translate(-50%, -50%);
     }
     &:hover {
       svg {
@@ -134,15 +135,21 @@ const PricePurchase = styled.div`
 
   @media only screen and (max-width: 800px) {
     display: flex;
-    right: 0;
+    right: 20px;
     transform: translateX(0%);
     .price,
     .purchase {
       margin-bottom: 0px;
       padding: 5px;
+      display: table;
+      &:after {
+        width: 90px;
+        height: 90px;
+      }
     }
     .price {
-      margin-right: 70px;
+      margin-right: 57px;
+      margin-top: 4px;
     }
   }
 `;
@@ -170,5 +177,8 @@ const ProductImageContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 25px;
+    @media only screen and (max-width: 500px) {
+      margin-top: 15px;
+    }
   }
 `;

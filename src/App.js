@@ -7,8 +7,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { set } from "react-hook-form";
 import Title from "./components/Title/Title";
 import bg from "./images/bg-comp.jpg";
+import bgMobile from "./images/bg-mobile-comp.jpg";
 import { Parallax } from "react-parallax";
 import { noise } from "./noise";
+import {
+  MobileView,
+  isPortrait,
+  withOrientationChange,
+} from "react-device-detect";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -70,7 +76,9 @@ const App = () => {
   };
 
   useEffect(() => {
-    // noise();
+    noise();
+    console.log(isPortrait);
+    console.log(MobileView);
   });
 
   useEffect(() => {
@@ -87,7 +95,11 @@ const App = () => {
           <Route
             render={({ location }) =>
               ["/", "/basket"].includes(location.pathname) ? (
-                <Parallax blur={0} bgImage={bg} strength={1000}>
+                <Parallax
+                  blur={0}
+                  bgImage={`${MobileView ? bgMobile : bg}`}
+                  strength={1000}
+                >
                   <Noise id="noise" />
                   <PageContainer>
                     <Title location={location} />
