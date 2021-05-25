@@ -5,8 +5,9 @@ import tapeCaseBack from "../images/tape-case-back-comp.png";
 import tapeCaseFront from "../images/tape-case-front-comp.png";
 import tape from "../images/tape-comp.png";
 import smudge from "../images/smudge.png";
+import Images from "./Images";
 
-const HomePage = ({ products, onAddToCart }) => {
+const HomePage = ({ products, onAddToCart, windowSmall }) => {
   return (
     <Container>
       <ProductContainer>
@@ -33,6 +34,7 @@ const HomePage = ({ products, onAddToCart }) => {
           USB CASSETE TAPE<br></br>INSIDE INCLUDES<br></br>100+ IMAGES
         </h3>
         <br></br>
+        {windowSmall && <Images windowSmall={windowSmall} />}
         <br></br>
         <h3>CLOSE TO HOME VOL 1</h3>
         <p>
@@ -81,6 +83,7 @@ const Container = styled.div`
   text-align: center;
   margin: 0 auto;
   color: #d5da89;
+  z-index: 1;
 `;
 
 const ProductContainer = styled.div`

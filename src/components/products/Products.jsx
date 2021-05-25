@@ -4,8 +4,10 @@ import Product from "./Product/Product";
 const Products = ({ products, onAddToCart }) => {
   return (
     <main>
-      {products.map((product) => {
-        return <Product product={product} onAddToCart={onAddToCart} />;
+      {products.map((product, index) => {
+        return (
+          <Product key={index} product={product} onAddToCart={onAddToCart} />
+        );
       })}
     </main>
   );

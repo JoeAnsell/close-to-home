@@ -121,7 +121,7 @@ const App = () => {
                   bgImage={`${isMobile ? bgMobile : bg}`}
                   strength={1000}
                 >
-                  {location.pathname === "/" && (
+                  {location.pathname === "/" && !windowSmall && (
                     <Images windowSmall={windowSmall} />
                   )}
                   <Noise id="noise" />
@@ -130,6 +130,7 @@ const App = () => {
                     <Switch>
                       <Route exact path="/">
                         <HomePage
+                          windowSmall={windowSmall}
                           products={products}
                           onAddToCart={handleAddToCart}
                         />
@@ -181,6 +182,8 @@ const PageContainer = styled.div`
   padding: 50px 30px 100px 30px;
   margin: 0 auto;
   max-width: 700px;
+  position: relative;
+  z-index: 1;
   @media only screen and (max-width: 500px) {
     padding: 80px 10px 100px 10px;
   }
