@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { commerce } from "./lib/commerce";
-import { Products, Navbar, Cart, Checkout, HomePage } from "./components";
+import {
+  Products,
+  Navbar,
+  Cart,
+  Checkout,
+  HomePage,
+  Title,
+  Images,
+} from "./components";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { set } from "react-hook-form";
-import Title from "./components/Title/Title";
 import bg from "./images/bg-comp.jpg";
 import bgMobile from "./images/bg-mobile-comp.jpg";
 import { Parallax } from "react-parallax";
@@ -13,6 +20,7 @@ import { noise } from "./noise";
 import {
   MobileView,
   isPortrait,
+  isMobile,
   withOrientationChange,
 } from "react-device-detect";
 
@@ -97,9 +105,10 @@ const App = () => {
               ["/", "/basket"].includes(location.pathname) ? (
                 <Parallax
                   blur={0}
-                  bgImage={`${MobileView ? bgMobile : bg}`}
+                  bgImage={`${isMobile ? bgMobile : bg}`}
                   strength={1000}
                 >
+                  {location.pathname === "/" && <Images />}
                   <Noise id="noise" />
                   <PageContainer>
                     <Title location={location} />

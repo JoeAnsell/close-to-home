@@ -3,3 +3,5 @@ export { default as Products } from "./products/Products";
 export { default as Cart } from "./Cart/Cart";
 export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
 export { default as HomePage } from "./HomePage";
+export { default as Title } from "./Title";
+export { default as Images } from "./Images";

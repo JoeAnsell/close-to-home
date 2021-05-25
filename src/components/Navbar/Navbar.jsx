@@ -48,8 +48,10 @@ const AppBar = styled.div`
   height: 70px;
   z-index: 2;
   color: #d5da89;
+  ${"" /* background: rgba(0, 0, 0, 0.76); */}
   .dark {
     color: black;
+    background-color: white;
   }
 `;
 
