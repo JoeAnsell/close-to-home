@@ -11,10 +11,10 @@ const Navbar = ({ totalItems }) => {
     <AppBar position="fixed" color="inherit">
       <Left>
         <Link to="/">
-          {location.pathname === "/checkout" ? (
+          {location.pathname !== "/" && location.pathname === "/checkout" ? (
             <Home className="dark" />
           ) : (
-            <Home />
+            location.pathname !== "/" && <Home />
           )}
         </Link>
       </Left>
