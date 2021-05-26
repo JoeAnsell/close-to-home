@@ -53,6 +53,10 @@ const AppBar = styled.div`
     color: black;
     background-color: white;
   }
+
+  button {
+    background-color: black;
+  }
 `;
 
 const Left = styled.div`

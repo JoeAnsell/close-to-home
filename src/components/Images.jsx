@@ -47,6 +47,11 @@ const Images = ({ windowSmall }) => {
           );
         })}
       </ImagesContainer>
+      {windowSmall && (
+        <>
+          <ImageInstruction>(Click images to expand)</ImageInstruction>
+        </>
+      )}
 
       {isOpen && (
         <Lightbox
@@ -64,6 +69,11 @@ const Images = ({ windowSmall }) => {
 };
 
 export default Images;
+
+const ImageInstruction = styled.p`
+  font-size: 12px;
+  margin-bottom: 20px;
+`;
 
 const ImagesContainer = styled.div`
   display: block;
@@ -87,6 +97,7 @@ const ImagesContainer = styled.div`
       min-width: 25vw;
       min-height: unset;
       max-height: unset;
+      opacity: 1;
     }
   }
 `;
