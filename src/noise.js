@@ -78,8 +78,9 @@ export const noise = () => {
   // Init
   const init = (() => {
     canvas = document.getElementById("noise");
-    ctx = canvas.getContext("2d");
-
-    setup();
+    if (canvas) {
+      ctx = canvas.getContext("2d");
+      setup();
+    }
   })();
 };

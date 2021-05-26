@@ -49,6 +49,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
   useEffect(() => {
     generateToken();
+    console.log(order);
   }, [cart]);
 
   const next = (data) => {
@@ -67,13 +68,13 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     order.customer ? (
       <>
         <div>
-          <Typography variasnt="h5">
+          <Typography variant="h5">
             Thank you for your purchase, {order.customer.firstname}{" "}
             {order.customer.lastname}
           </Typography>
           <Divider className={classes.divider} />
           <Typography variant="subtitilte2">
-            Order ref: {order.customer.reference}
+            Order ref: {order.customer_reference}
           </Typography>
         </div>
         <br></br>
