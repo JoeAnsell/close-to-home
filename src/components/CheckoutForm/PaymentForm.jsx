@@ -53,11 +53,31 @@ const PaymentForm = ({
         },
         billing: {
           name: "Primary",
-          street: shippingData.address1,
-          town_city: shippingData.city,
-          county_state: shippingData.shippingSubdivision,
-          postal_zip_code: shippingData.zip,
-          country: shippingData.shippingCountry,
+          street: `${
+            shippingData.billing_address1
+              ? shippingData.billing_address1
+              : shippingData.address1
+          }`,
+          town_city: `${
+            shippingData.billing_city
+              ? shippingData.billing_city
+              : shippingData.city
+          }`,
+          county_state: `${
+            shippingData.billing_shippingSubdivision
+              ? shippingData.billing_shippingSubdivision
+              : shippingData.shippingSubdivision
+          }`,
+          postal_zip_code: `${
+            shippingData.billing_zip
+              ? shippingData.billing_zip
+              : shippingData.zip
+          }`,
+          country: `${
+            shippingData.billing_shippingCountry
+              ? shippingData.billing_shippingCountry
+              : shippingData.shippingCountry
+          }`,
         },
         fulfillment: { shipping_method: shippingData.shippingOption },
         payment: {

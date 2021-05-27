@@ -6,6 +6,8 @@ import {
   Grid,
   Typography,
   TextField,
+  FormControlLabel,
+  Checkbox,
 } from "@material-ui/core";
 import styled from "styled-components";
 import { useFormContext, useForm, FormProvider } from "react-hook-form";
@@ -22,6 +24,7 @@ const AddressForm = ({ checkoutToken, next }) => {
   const [shippingSubdivision, setShippingSubdivision] = useState("");
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
+  const [billingSameAsShipping, setBillingSameAsShipping] = useState(true);
   const methods = useForm();
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({
     id: code,
@@ -94,9 +97,6 @@ const AddressForm = ({ checkoutToken, next }) => {
 
   return (
     <Container>
-      <Typography variant="h6" gutterBottom>
-        Shipping Address
-      </Typography>
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit((data) =>
@@ -109,12 +109,56 @@ const AddressForm = ({ checkoutToken, next }) => {
           )}
         >
           <Grid container spacing={3}>
+            <Typography style={{ width: "100%" }} variant="h6" gutterBottom>
+              Shipping Address
+            </Typography>
             <FormInput required name="firstName" label="First name" />
             <FormInput required name="lastName" label="Last name" />
             <FormInput required name="address1" label="Address line 1" />
             <FormInput required name="email" label="Email" />
             <FormInput required name="city" label="City" />
             <FormInput required name="zip" label="Zip / Postal code" />
+            <br></br>
+            <br></br>
+            <FormControlLabel
+              className="billing-toggle"
+              control={
+                <Checkbox
+                  checked={billingSameAsShipping ? false : true}
+                  onChange={() =>
+                    setBillingSameAsShipping(!billingSameAsShipping)
+                  }
+                  name="checkedB"
+                  color="primary"
+                />
+              }
+              label="Billing address same as Shipping address?"
+            />
+            {billingSameAsShipping && (
+              <>
+                <Typography className="billing-title" variant="h6" gutterBottom>
+                  Billing Address
+                </Typography>
+                <FormInput
+                  required
+                  name="billing_firstName"
+                  label="First name"
+                />
+                <FormInput required name="billing_lastName" label="Last name" />
+                <FormInput
+                  required
+                  name="billing_address1"
+                  label="Address line 1"
+                />
+                <FormInput required name="billing_email" label="Email" />
+                <FormInput required name="billing_city" label="City" />
+                <FormInput
+                  required
+                  name="billing_zip"
+                  label="Zip / Postal code"
+                />
+              </>
+            )}
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select
@@ -159,6 +203,7 @@ const AddressForm = ({ checkoutToken, next }) => {
             </Grid>
           </Grid>
           <br />
+          <br></br>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Link to="/basket">
               <Button variant="outlined">Back to Cart</Button>
@@ -177,4 +222,14 @@ export default AddressForm;
 
 const Container = styled.div`
   display: block;
+  .billing-title {
+    margin-top: 30px;
+    width: 100%;
+  }
+  .billing-toggle {
+    margin: 20px 0px 10px 0px;
+  }
+  .billing-spacer {
+    margin-bottom: 30px;
+  }
 `;

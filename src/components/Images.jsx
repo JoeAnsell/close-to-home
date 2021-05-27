@@ -94,7 +94,7 @@ const ImagesContainer = styled.div`
       top: unset;
       left: unset;
       max-width: unset;
-      min-width: 25vw;
+      min-width: 31%;
       min-height: unset;
       max-height: unset;
       opacity: 1;
