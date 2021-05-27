@@ -109,7 +109,7 @@ const AddressForm = ({ checkoutToken, next }) => {
           )}
         >
           <Grid container spacing={3}>
-            <Typography style={{ width: "100%" }} variant="h6" gutterBottom>
+            <Typography style={{ width: "100%" }} variant="h6">
               Shipping Address
             </Typography>
             <FormInput required name="firstName" label="First name" />
@@ -136,7 +136,7 @@ const AddressForm = ({ checkoutToken, next }) => {
             />
             {billingSameAsShipping && (
               <>
-                <Typography className="billing-title" variant="h6" gutterBottom>
+                <Typography className="billing-title" variant="h6">
                   Billing Address
                 </Typography>
                 <FormInput
@@ -159,6 +159,13 @@ const AddressForm = ({ checkoutToken, next }) => {
                 />
               </>
             )}
+            <Typography
+              style={{ width: "100%", marginTop: "30px", marginBottom: "20px" }}
+              variant="h6"
+              gutterBottom
+            >
+              Delivery Method
+            </Typography>
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select
