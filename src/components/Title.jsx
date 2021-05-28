@@ -29,6 +29,7 @@ const TitleContainer = styled.div`
   p {
     font-weight: bold;
     font-size: 15px;
+    line-height: 1.5;
   }
   margin-bottom: 30px;
   color: #d5da89;

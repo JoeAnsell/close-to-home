@@ -111,6 +111,7 @@ const App = () => {
     <Router>
       <AppContainer>
         <GlobalStyle />
+        {/* <div style={{ color: "white" }}>Coming soon....</div> */}
         <Navbar totalItems={cart.total_items} />
         <Switch>
           <Route
