@@ -8,12 +8,13 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
+  Button,
 } from "@material-ui/core";
 import styled from "styled-components";
 import { useFormContext, useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { commerce } from "../../lib/commerce";
-import { Button } from "../../styles";
+// import { Button } from "../../styles";
 
 import FormInput from "./CustomTextField";
 
@@ -213,7 +214,7 @@ const AddressForm = ({ checkoutToken, next }) => {
           <br></br>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Link to="/basket">
-              <Button variant="outlined">Back to Cart</Button>
+              <Button variant="outlined">Back</Button>
             </Link>
             <Button type="submit" color="primary" variant="contained">
               Next
@@ -238,5 +239,8 @@ const Container = styled.div`
   }
   .billing-spacer {
     margin-bottom: 30px;
+  }
+  a {
+    text-decoration: none;
   }
 `;
