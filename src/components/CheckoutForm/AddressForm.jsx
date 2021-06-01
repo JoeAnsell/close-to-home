@@ -115,7 +115,7 @@ const AddressForm = ({ checkoutToken, next }) => {
             </Typography>
             <FormInput required name="firstName" label="First name" />
             <FormInput required name="lastName" label="Last name" />
-            <FormInput required name="address1" label="Address line 1" />
+            <FormInput required name="address1" label="Address" />
             <FormInput required name="email" label="Email" />
             <FormInput required name="city" label="City" />
             <FormInput required name="zip" label="Zip / Postal code" />
@@ -146,11 +146,7 @@ const AddressForm = ({ checkoutToken, next }) => {
                   label="First name"
                 />
                 <FormInput required name="billing_lastName" label="Last name" />
-                <FormInput
-                  required
-                  name="billing_address1"
-                  label="Address line 1"
-                />
+                <FormInput required name="billing_address1" label="Address" />
                 <FormInput required name="billing_email" label="Email" />
                 <FormInput required name="billing_city" label="City" />
                 <FormInput
