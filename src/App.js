@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { commerce } from "./lib/commerce";
 import {
@@ -31,6 +31,7 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const [windowSmall, setWindowSmall] = useState(false);
+  const appHeight = useRef(null);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -108,10 +109,14 @@ const App = () => {
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
+  useEffect(() => {
+    console.log(appHeight.current.scrollHeight);
+  });
+
   return (
     <Router>
       <ParallaxProvider>
-        <AppContainer>
+        <AppContainer ref={appHeight}>
           <GlobalStyle />
           {/* <div style={{ color: "white" }}>Coming soon....</div> */}
           <Navbar totalItems={cart.total_items} />
@@ -119,16 +124,18 @@ const App = () => {
             <Route
               render={({ location }) =>
                 ["/", "/basket"].includes(location.pathname) ? (
-                  // <Parallax
-                  //   blur={0}
-                  //   className={`${isMobile && "mobile"}`}
-                  //   bgImage={`${isMobile ? bgMobile : bg}`}
-                  //   strength={1000}
-                  // >
-                  // <ParallaxProvider>
-                  <>
+                  <Parallax
+                    blur={0}
+                    className={`${isMobile && "mobile"}`}
+                    bgImage={`${isMobile ? bgMobile : bg}`}
+                    strength={1000}
+                  >
                     {location.pathname === "/" && !windowSmall && (
-                      <Images windowSmall={windowSmall} />
+                      <Images
+                        // appHeight={appHeight.current.scrollHeight}
+                        appHeight={appHeight}
+                        windowSmall={windowSmall}
+                      />
                     )}
                     <Noise id="noise" />
                     <PageContainer>
@@ -151,7 +158,7 @@ const App = () => {
                         </Route>
                       </Switch>
                     </PageContainer>
-                  </>
+                  </Parallax>
                 ) : (
                   <PageContainer>
                     <Route exact path="/checkout">

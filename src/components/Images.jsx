@@ -7,25 +7,9 @@ import image2 from "../images/crep-sole-converse.jpg";
 import image3 from "../images/context-proto-final.jpg";
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 
-const images = [
-  {
-    image: image1,
-    size: 100,
-    size_negative: -100,
-  },
-  {
-    image: image2,
-    size: 200,
-    size_negative: -200,
-  },
-  {
-    image: image3,
-    size: 300,
-    size_negative: -300,
-  },
-];
+const images = [image1, image2, image3];
 
-const Images = ({ windowSmall }) => {
+const Images = ({ windowSmall, appHeight }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [imageWidth, setImageWidth] = useState(0);
@@ -43,31 +27,36 @@ const Images = ({ windowSmall }) => {
   useEffect(() => {
     window.addEventListener("resize", generatePos);
     generatePos();
+    console.log(appHeight.current.scrollHwight);
     return () => window.removeEventListener("resize", generatePos);
   }, []);
 
   return (
     <>
-      <ImagesContainer className={`${windowSmall && "small"}`}>
-        {images.map((image, index) => {
-          return (
-            <Parallax
-              className={`image-${index + 1}`}
-              y={[image.size_negative, image.size]}
-            >
-              <Image
-                style={{ width: imageWidth }}
-                key={index}
-                onClick={() => {
-                  setPhotoIndex(index);
-                  setIsOpen(true);
-                }}
-                src={image.image}
-              />
-            </Parallax>
-          );
-        })}
-      </ImagesContainer>
+      <Wrapper>
+        <ImagesContainer
+          // style={{ minHeight: appHeight }}
+          className={`${windowSmall && "small"}`}
+        >
+          {images.map((image, index) => {
+            return (
+              <ImageContainer className={`image-${index + 1}`}>
+                <Parallax y={[200, -200]}>
+                  <Image
+                    style={{ width: imageWidth }}
+                    key={index}
+                    onClick={() => {
+                      setPhotoIndex(index);
+                      setIsOpen(true);
+                    }}
+                    src={image}
+                  />
+                </Parallax>
+              </ImageContainer>
+            );
+          })}
+        </ImagesContainer>
+      </Wrapper>
       {windowSmall && (
         <>
           <ImageInstruction>(Click images to expand)</ImageInstruction>
@@ -96,28 +85,37 @@ const ImageInstruction = styled.p`
   margin-bottom: 20px;
 `;
 
+const Wrapper = styled.div`
+  position: relative;
+  height: 100%;
+  display: block;
+`;
+
+const ImageContainer = styled.div`
+  position: fixed;
+  height: 100vh;
+  &.image-1 {
+    top: 15vh;
+    left: 5vw;
+  }
+  &.image-2 {
+    top: 30vh;
+    right: 15vw;
+  }
+  &.image-3 {
+    top: 45vh;
+    left: 9vw;
+  }
+`;
+
 const ImagesContainer = styled.div`
   display: block;
-  position: relative;
+  position: absolute;
   width: 100vw;
   min-width: 100vw;
-  top: 50%;
-  min-height: 100vh;
-  transform: translate(-50%, -50%);
+  min-height: 100%;
   .parallax-outer {
     position: absolute;
-    &.image-1 {
-      ${"" /* top: 10vh; */}
-      left: 5vh;
-    }
-    &.image-2 {
-      ${"" /* top: 35vh; */}
-      right: 10vh;
-    }
-    &.image-3 {
-      left: 9vh;
-      ${"" /* top: 80vh; */}
-    }
   }
   &.small {
     position: inherit;
