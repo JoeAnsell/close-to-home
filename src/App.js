@@ -23,6 +23,7 @@ import {
   isMobile,
   withOrientationChange,
 } from "react-device-detect";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -109,62 +110,66 @@ const App = () => {
 
   return (
     <Router>
-      <AppContainer>
-        <GlobalStyle />
-        {/* <div style={{ color: "white" }}>Coming soon....</div> */}
-        <Navbar totalItems={cart.total_items} />
-        <Switch>
-          <Route
-            render={({ location }) =>
-              ["/", "/basket"].includes(location.pathname) ? (
-                <Parallax
-                  blur={0}
-                  className={`${isMobile && "mobile"}`}
-                  bgImage={`${isMobile ? bgMobile : bg}`}
-                  strength={1000}
-                >
-                  {location.pathname === "/" && !windowSmall && (
-                    <Images windowSmall={windowSmall} />
-                  )}
-                  <Noise id="noise" />
+      <ParallaxProvider>
+        <AppContainer>
+          <GlobalStyle />
+          {/* <div style={{ color: "white" }}>Coming soon....</div> */}
+          <Navbar totalItems={cart.total_items} />
+          <Switch>
+            <Route
+              render={({ location }) =>
+                ["/", "/basket"].includes(location.pathname) ? (
+                  // <Parallax
+                  //   blur={0}
+                  //   className={`${isMobile && "mobile"}`}
+                  //   bgImage={`${isMobile ? bgMobile : bg}`}
+                  //   strength={1000}
+                  // >
+                  // <ParallaxProvider>
+                  <>
+                    {location.pathname === "/" && !windowSmall && (
+                      <Images windowSmall={windowSmall} />
+                    )}
+                    <Noise id="noise" />
+                    <PageContainer>
+                      <Title location={location} />
+                      <Switch>
+                        <Route exact path="/">
+                          <HomePage
+                            windowSmall={windowSmall}
+                            products={products}
+                            onAddToCart={handleAddToCart}
+                          />
+                        </Route>
+                        <Route exact path="/basket">
+                          <Cart
+                            cart={cart}
+                            handleUpdateCartQty={handleUpdateCartQty}
+                            handleRemoveFromCart={handleRemoveFromCart}
+                            handleEmptyCart={handleEmptyCart}
+                          ></Cart>
+                        </Route>
+                      </Switch>
+                    </PageContainer>
+                  </>
+                ) : (
                   <PageContainer>
-                    <Title location={location} />
-                    <Switch>
-                      <Route exact path="/">
-                        <HomePage
-                          windowSmall={windowSmall}
-                          products={products}
-                          onAddToCart={handleAddToCart}
-                        />
-                      </Route>
-                      <Route exact path="/basket">
-                        <Cart
-                          cart={cart}
-                          handleUpdateCartQty={handleUpdateCartQty}
-                          handleRemoveFromCart={handleRemoveFromCart}
-                          handleEmptyCart={handleEmptyCart}
-                        ></Cart>
-                      </Route>
-                    </Switch>
+                    <Route exact path="/checkout">
+                      <Title location={location} />
+                      <Checkout
+                        cart={cart}
+                        order={order}
+                        onCaptureCheckout={handleCaptureCheckout}
+                        error={errorMessage}
+                      />
+                    </Route>
                   </PageContainer>
-                </Parallax>
-              ) : (
-                <PageContainer>
-                  <Route exact path="/checkout">
-                    <Title location={location} />
-                    <Checkout
-                      cart={cart}
-                      order={order}
-                      onCaptureCheckout={handleCaptureCheckout}
-                      error={errorMessage}
-                    />
-                  </Route>
-                </PageContainer>
-              )
-            }
-          ></Route>
-        </Switch>
-      </AppContainer>
+                )
+              }
+            ></Route>
+          </Switch>
+        </AppContainer>
+      </ParallaxProvider>
     </Router>
   );
 };

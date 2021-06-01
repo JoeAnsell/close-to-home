@@ -5,8 +5,25 @@ import "react-image-lightbox/style.css";
 import image1 from "../images/Styling-intro.jpeg";
 import image2 from "../images/crep-sole-converse.jpg";
 import image3 from "../images/context-proto-final.jpg";
+import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 
-const images = [image1, image2, image3];
+const images = [
+  {
+    image: image1,
+    size: 100,
+    size_negative: -100,
+  },
+  {
+    image: image2,
+    size: 200,
+    size_negative: -200,
+  },
+  {
+    image: image3,
+    size: 300,
+    size_negative: -300,
+  },
+];
 
 const Images = ({ windowSmall }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,16 +51,20 @@ const Images = ({ windowSmall }) => {
       <ImagesContainer className={`${windowSmall && "small"}`}>
         {images.map((image, index) => {
           return (
-            <Image
-              style={{ width: imageWidth }}
+            <Parallax
               className={`image-${index + 1}`}
-              key={index}
-              onClick={() => {
-                setPhotoIndex(index);
-                setIsOpen(true);
-              }}
-              src={image}
-            />
+              y={[image.size_negative, image.size]}
+            >
+              <Image
+                style={{ width: imageWidth }}
+                key={index}
+                onClick={() => {
+                  setPhotoIndex(index);
+                  setIsOpen(true);
+                }}
+                src={image.image}
+              />
+            </Parallax>
           );
         })}
       </ImagesContainer>
@@ -77,10 +98,27 @@ const ImageInstruction = styled.p`
 
 const ImagesContainer = styled.div`
   display: block;
-  position: absolute;
-  top: 55px;
+  position: relative;
   width: 100vw;
-  min-width: 100vh;
+  min-width: 100vw;
+  top: 50%;
+  min-height: 100vh;
+  transform: translate(-50%, -50%);
+  .parallax-outer {
+    position: absolute;
+    &.image-1 {
+      ${"" /* top: 10vh; */}
+      left: 5vh;
+    }
+    &.image-2 {
+      ${"" /* top: 35vh; */}
+      right: 10vh;
+    }
+    &.image-3 {
+      left: 9vh;
+      ${"" /* top: 80vh; */}
+    }
+  }
   &.small {
     position: inherit;
     display: flex;
@@ -109,23 +147,11 @@ const Image = styled.img`
   height: auto;
   opacity: 0.5;
   transition: 0.15s;
-  position: absolute;
+  ${"" /* position: absolute; */}
   &:hover {
     opacity: 1;
     cursor: zoom-in;
     transform: scale(1.05);
-  }
-  &.image-1 {
-    top: 10vh;
-    left: 5vh;
-  }
-  &.image-2 {
-    top: 35vh;
-    right: 10vh;
-  }
-  &.image-3 {
-    left: 9vh;
-    top: 80vh;
   }
   &.small {
   }
