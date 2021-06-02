@@ -6,8 +6,12 @@ import tapeCaseFront from "../images/tape-case-front-comp.png";
 import tape from "../images/tape-comp.png";
 import smudge from "../images/smudge.png";
 import Images from "./Images";
+import { noise } from "../noise";
 
 const HomePage = ({ products, onAddToCart, windowSmall }) => {
+  useEffect(() => {
+    noise();
+  }, []);
   return (
     <Container>
       <ProductContainer>

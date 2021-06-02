@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import bg from "./images/bg-comp.jpg";
 import bgMobile from "./images/bg-mobile-comp.jpg";
 import { Parallax } from "react-parallax";
-import { noise } from "./noise";
 import { isMobile } from "react-device-detect";
 
 const App = () => {
@@ -72,10 +71,6 @@ const App = () => {
     refreshCart();
   };
 
-  useEffect(() => {
-    noise();
-  });
-
   const checkDevice = () => {
     const windowWidth = window.innerWidth;
     setTimeout(() => {
@@ -103,10 +98,12 @@ const App = () => {
     <Router>
       <AppContainer ref={appHeightRef}>
         <GlobalStyle />
-        {/* <div style={{ color: "white" }}>Coming soon....</div> */}
         <Navbar totalItems={cart.total_items} />
         <Switch>
           <Route
+            onChange={() => {
+              console.log("frog");
+            }}
             render={({ location }) =>
               ["/", "/basket"].includes(location.pathname) ? (
                 <Parallax

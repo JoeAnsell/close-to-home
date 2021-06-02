@@ -24,10 +24,6 @@ const Images = ({ windowSmall, appHeight }) => {
   };
 
   useEffect(() => {
-    console.log(appHeight);
-  });
-
-  useEffect(() => {
     window.addEventListener("resize", generatePos);
     generatePos();
     return () => window.removeEventListener("resize", generatePos);
@@ -132,7 +128,7 @@ const Image = styled.img`
   }
   &.image-3 {
     left: 9vh;
-    top: 60vh;
+    top: 80vh;
   }
   &.small {
   }
