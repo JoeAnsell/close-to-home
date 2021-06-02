@@ -5,6 +5,7 @@ import "react-image-lightbox/style.css";
 import image1 from "../images/Styling-intro.jpeg";
 import image2 from "../images/crep-sole-converse.jpg";
 import image3 from "../images/context-proto-final.jpg";
+import { isMobile } from "react-device-detect";
 
 const images = [image1, image2, image3];
 
@@ -12,6 +13,7 @@ const Images = ({ windowSmall, appHeight }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [imageWidth, setImageWidth] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
   const mainContentWidth = 640;
 
   const generatePos = () => {
@@ -23,6 +25,16 @@ const Images = ({ windowSmall, appHeight }) => {
     return ["frog", "dog"];
   };
 
+  const regScroll = () => {
+    setScrollTop(window.scrollY / 2);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", regScroll);
+    regScroll();
+    return () => window.removeEventListener("scroll", regScroll);
+  }, []);
+
   useEffect(() => {
     window.addEventListener("resize", generatePos);
     generatePos();
@@ -32,7 +44,10 @@ const Images = ({ windowSmall, appHeight }) => {
   return (
     <>
       <ImagesContainer
-        style={{ height: appHeight }}
+        style={{
+          height: appHeight,
+          marginTop: `${!isMobile && scrollTop}px`,
+        }}
         className={`${windowSmall && "small"}`}
       >
         {images.map((image, index) => {
