@@ -45,8 +45,8 @@ export const noise = () => {
 
   // Setup
   const setup = () => {
-    wWidth = window.innerWidth;
-    wHeight = window.innerHeight;
+    wWidth = window.innerWidth / 3;
+    wHeight = window.innerHeight / 3;
 
     canvas.width = wWidth;
     canvas.height = wHeight;

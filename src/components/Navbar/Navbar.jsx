@@ -12,9 +12,15 @@ const Navbar = ({ totalItems }) => {
       <Left>
         <Link to="/">
           {location.pathname !== "/" && location.pathname === "/checkout" ? (
-            <Home className="dark" />
+            <IconButton className="dark" color="white">
+              <Home className="dark" />
+            </IconButton>
           ) : (
-            location.pathname !== "/" && <Home />
+            location.pathname !== "/" && (
+              <IconButton>
+                <Home />
+              </IconButton>
+            )
           )}
         </Link>
       </Left>
@@ -49,19 +55,27 @@ const AppBar = styled.div`
   z-index: 2;
   color: #d5da89;
   ${"" /* background: rgba(0, 0, 0, 0.76); */}
-  .dark {
-    color: black;
-    background-color: white;
-  }
-
-  button {
-    background-color: black;
-  }
 `;
 
 const Left = styled.div`
-  margin: 10px;
+  padding: 10px;
+  .dark {
+    color: black;
+    background-color: white;
+    &:hover {
+      background-color: transparent;
+      svg {
+        background-color: transparent;
+      }
+    }
+  }
+  svg {
+    color: #d5da89;
+  }
 `;
 const Right = styled.div`
-  margin: 10px;
+  padding: 10px;
+  button {
+    background-color: black;
+  }
 `;

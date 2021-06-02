@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { commerce } from "./lib/commerce";
-import {
-  Products,
-  Navbar,
-  Cart,
-  Checkout,
-  HomePage,
-  Title,
-  Images,
-} from "./components";
+import { Navbar, Cart, Checkout, HomePage, Title, Images } from "./components";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { set } from "react-hook-form";
 import bg from "./images/bg-comp.jpg";
 import bgMobile from "./images/bg-mobile-comp.jpg";
 import { Parallax } from "react-parallax";
-import { noise } from "./noise";
-import {
-  MobileView,
-  isPortrait,
-  isMobile,
-  withOrientationChange,
-} from "react-device-detect";
+import { isMobile } from "react-device-detect";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [appHeight, setAppHeight] = useState("");
   const [windowSmall, setWindowSmall] = useState(false);
+  const appHeightRef = useRef(null);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -84,10 +71,6 @@ const App = () => {
     refreshCart();
   };
 
-  useEffect(() => {
-    noise();
-  });
-
   const checkDevice = () => {
     const windowWidth = window.innerWidth;
     setTimeout(() => {
@@ -107,24 +90,31 @@ const App = () => {
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
+  useEffect(() => {
+    setAppHeight(appHeightRef.current.scrollHeight);
+  }, [appHeightRef]);
+
   return (
     <Router>
-      <AppContainer>
+      <AppContainer ref={appHeightRef}>
         <GlobalStyle />
-        {/* <div style={{ color: "white" }}>Coming soon....</div> */}
         <Navbar totalItems={cart.total_items} />
         <Switch>
           <Route
+            onChange={() => {
+              console.log("frog");
+            }}
             render={({ location }) =>
               ["/", "/basket"].includes(location.pathname) ? (
                 <Parallax
                   blur={0}
                   className={`${isMobile && "mobile"}`}
                   bgImage={`${isMobile ? bgMobile : bg}`}
+                  style={{ minHeight: "100vh" }}
                   strength={1000}
                 >
                   {location.pathname === "/" && !windowSmall && (
-                    <Images windowSmall={windowSmall} />
+                    <Images appHeight={appHeight} windowSmall={windowSmall} />
                   )}
                   <Noise id="noise" />
                   <PageContainer>

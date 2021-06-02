@@ -8,7 +8,7 @@ import image3 from "../images/context-proto-final.jpg";
 
 const images = [image1, image2, image3];
 
-const Images = ({ windowSmall }) => {
+const Images = ({ windowSmall, appHeight }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [imageWidth, setImageWidth] = useState(0);
@@ -31,7 +31,10 @@ const Images = ({ windowSmall }) => {
 
   return (
     <>
-      <ImagesContainer className={`${windowSmall && "small"}`}>
+      <ImagesContainer
+        style={{ height: appHeight }}
+        className={`${windowSmall && "small"}`}
+      >
         {images.map((image, index) => {
           return (
             <Image
@@ -80,7 +83,7 @@ const ImagesContainer = styled.div`
   position: absolute;
   top: 55px;
   width: 100vw;
-  min-width: 100vh;
+  min-width: 100vw;
   &.small {
     position: inherit;
     display: flex;

@@ -3,10 +3,6 @@ import styled from "styled-components";
 import { AddShoppingCart } from "@material-ui/icons";
 
 const Product = ({ product, onAddToCart }) => {
-  useEffect(() => {
-    console.log(product);
-  });
-
   return (
     <ProductContainer>
       <ProductActions
