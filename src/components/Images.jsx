@@ -5,14 +5,14 @@ import "react-image-lightbox/style.css";
 import image1 from "../images/Styling-intro.jpeg";
 import image2 from "../images/crep-sole-converse.jpg";
 import image3 from "../images/context-proto-final.jpg";
-import { isMobile } from "react-device-detect";
+import { isMobile, isDesktop, MobileView } from "react-device-detect";
 
 const images = [image1, image2, image3];
 
 const Images = ({ windowSmall, appHeight }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [imageWidth, setImageWidth] = useState(0);
+  const [imageWidth, setImageWidth] = useState("");
   const [scrollTop, setScrollTop] = useState(0);
   const mainContentWidth = 640;
 
@@ -20,7 +20,10 @@ const Images = ({ windowSmall, appHeight }) => {
     let windowWidth = window.innerWidth;
     let negativeSpace = (windowWidth - mainContentWidth) / 2;
     let imageWidth = negativeSpace / 2;
-    setImageWidth(imageWidth);
+    if (isDesktop) {
+      setImageWidth(imageWidth);
+      console.log("mobile");
+    }
 
     return ["frog", "dog"];
   };
@@ -46,14 +49,14 @@ const Images = ({ windowSmall, appHeight }) => {
       <ImagesContainer
         style={{
           height: appHeight,
-          marginTop: `${!isMobile && scrollTop}px`,
+          marginTop: `${isDesktop && scrollTop}px`,
         }}
         className={`${windowSmall && "small"}`}
       >
         {images.map((image, index) => {
           return (
             <Image
-              style={{ width: imageWidth }}
+              style={!isMobile ? { width: imageWidth } : null}
               className={`image-${index + 1}`}
               key={index}
               onClick={() => {
@@ -101,20 +104,22 @@ const ImagesContainer = styled.div`
   min-width: 100vw;
   &.small {
     position: inherit;
-    display: flex;
+    display: inline-flex;
     width: 100%;
     min-width: unset;
     justify-content: space-between;
     margin: 20px 0px;
+    align-items: center;
     img {
+      align-self: center;
+      display: inline;
       position: inherit;
-      display: block;
       top: unset;
       left: unset;
-      max-width: unset;
-      min-width: 31%;
       min-height: unset;
       max-height: unset;
+      min-width: unset;
+      width: 31%;
       opacity: 1;
     }
   }

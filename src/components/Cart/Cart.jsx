@@ -44,7 +44,7 @@ const Cart = ({
           <ButtonContainer>
             <OutlineButton onClick={handleEmptyCart}>Empty Cart</OutlineButton>
             <Link to="/checkout">
-              <Button>Checkout </Button>
+              <Button style={{ backgroundColor: "#efefef" }}>Checkout </Button>
             </Link>
           </ButtonContainer>
         </>
